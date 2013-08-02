@@ -1,4 +1,6 @@
-YUI.add('yulb', function(Y) {
+/*global document, YUI */
+YUI.add("yulb", function(Y) {
+    "use strict";
 
     var launchers     = Y.all(".yulb-launcher"),
         overlayTmpl   = "<div class=\"yulb-overlay\" style=\"width:{width}px; height: {height}px;\"></div>",
@@ -19,7 +21,7 @@ YUI.add('yulb', function(Y) {
     Y.yulb = {
         defaults  : defaults,
         launchers : launchers
-    }
+    };
 
     if(launchers.isEmpty()) {
         return;
@@ -48,22 +50,21 @@ YUI.add('yulb', function(Y) {
                 eventData = {
                     launcher : launcher,
                     vidid    : popupData.vidid
-                }
-
-                overlay   = Y.Node.create(Y.Lang.sub(overlayTmpl, overlayData));
+                },
+                overlay   = Y.Node.create(Y.Lang.sub(overlayTmpl, overlayData)),
                 container = Y.Node.create(Y.Lang.sub(containerTmpl, containerData)).appendTo(overlay);
-                popup     = Y.Node.create(Y.Lang.sub(iframeTmpl, popupData)).appendTo(container);
-
+            
+            Y.Node.create(Y.Lang.sub(iframeTmpl, popupData)).appendTo(container);
             overlay.appendTo(document.body);
 
             Y.fire("yulb:open", eventData);
 
-            overlay.on("click", function(e) {
+            overlay.on("click", function() {
                 Y.fire("yulb:close", eventData);
                 overlay.remove(true);
             });
 
-            Y.on("windowresize", function(e) {
+            Y.on("windowresize", function() {
                 overlay.setStyles({
                     "width"  : Y.DOM.winWidth(),
                     "height" : Y.DOM.winHeight()
@@ -72,4 +73,4 @@ YUI.add('yulb', function(Y) {
         });
     });
 
-}, "1.0.0", { requires: [ 'node', 'event' ] });
+}, "1.0.0", { requires: [ "node", "event" ] });
