@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Youtube Ultralightbox</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+
+        .yulb-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .yulb-container {
+            padding: 20px;
+            margin: 100px auto;
+            background: #f66;
+        }
+    </style>
+</head>
+<body>
+
+    <a class="yulb-launcher" data-vidid="s3jb6jFW4DQ" data-vidwidth="640" data-vidheight="390" href="http://www.youtube.com/watch?v=s3jb6jFW4DQ">Click Here for Video!</a>
+
+    <script src="http://yui.yahooapis.com/3.11.0/build/yui/yui-min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        YUI().use("yulb", function() {});
+    </script>
+</body>
+</html>
