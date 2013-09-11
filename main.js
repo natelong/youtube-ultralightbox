@@ -5,7 +5,7 @@ YUI.add("yulb", function(Y) {
     var launchers     = Y.all(".yulb-launcher"),
         overlayTmpl   = "<div class=\"yulb-overlay\" style=\"width:{width}px; height: {height}px;\"></div>",
         containerTmpl = "<div class=\"yulb-container\" style=\"width:{width}px; height:{height}px;\"></div>",
-        iframeTmpl    = "<iframe type=\"text/html\" width=\"{width}\" height=\"{height}\" src=\"http://www.youtube.com/embed/{vidid}?{params}\" frameborder=\"0\" />",
+        iframeTmpl    = "<iframe type=\"text/html\" width=\"{width}\" height=\"{height}\" src=\"//www.youtube.com/embed/{vidid}?{params}\" frameborder=\"0\" />",
         defaults      = {
             width  : 800,
             height : 600,
@@ -35,7 +35,7 @@ YUI.add("yulb", function(Y) {
                     vidid  : launcher.getData("vidid"),
                     width  : +launcher.getData("vidwidth") || defaults.width,
                     height : +launcher.getData("vidheight") || defaults.height,
-                    params : Y.Object.keys(defaults.params).map(function(key) {
+                    params : Y.Array.map(Y.Object.keys(defaults.params), function(key) {
                                 return key + "=" + defaults.params[key];
                              }).join("&")
                 },
@@ -73,4 +73,4 @@ YUI.add("yulb", function(Y) {
         });
     });
 
-}, "1.0.0", { requires: [ "node", "event" ] });
+}, "1.0.0", { requires: [ "node", "event", "array-extras" ] });
